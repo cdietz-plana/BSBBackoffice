@@ -1,0 +1,102 @@
+/* ---------------------------------------------------------------------------
+ * Global baseline. Brand colours live in src/theme/theme.ts — the only values
+ * here are structural (reset, scrollbars) or resolve from CSS variables that
+ * the ConfigProvider bridge (ThemeProvider) writes at runtime.
+ * ------------------------------------------------------------------------- */
+:root {
+  --mgm-gold: #b08d46;
+  --mgm-gold-deep: #8c6e33;
+  --mgm-canvas: #fafaf8;
+  --mgm-text: #1f1b16;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC',
+    sans-serif;
+  color: var(--mgm-text);
+  background: var(--mgm-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--mgm-gold);
+}
+a:hover {
+  color: var(--mgm-gold-deep);
+}
+
+/* Airy, restrained scrollbars to match the premium look. */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #d9d2c4;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #c3bAa4;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* --- Frosted-glass surfaces ------------------------------------------------
+ * `.glass` is the shared translucent + blur surface used by cards, the filter
+ * bar and the app chrome. Colours come from the theme (see theme.ts `brand`).
+ * ------------------------------------------------------------------------- */
+.glass {
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(120, 113, 73, 0.18);
+}
+
+/* Give antd overlay surfaces the same frosted treatment for consistency. */
+.ant-modal-content,
+.ant-drawer-content,
+.ant-dropdown-menu,
+.ant-popover-inner,
+.ant-select-dropdown,
+.ant-picker-panel-container,
+.ant-table-filter-dropdown {
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+/* Root app canvas carries the tiled MGM lion watermark; the frosted chrome
+ * (header, sidebar, cards) blurs over it. */
+.app-canvas {
+  background-color: #f5efe2;
+  background-image: url('/bg-pattern.svg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Print: only the score card should ever reach a printer. */
+@media print {
+  body {
+    background: #fff;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

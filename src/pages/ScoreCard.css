@@ -1,0 +1,134 @@
+/* Print-first scorecard styling. The score card is a print artifact, so the
+   canvas is white and fixed-width, and @media print strips the chrome. */
+.sc-page {
+  background: #fff;
+  color: #1f1b16;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 40px;
+  border: 1px solid #e7e2d8;
+  border-radius: 12px;
+}
+
+.sc-toolbar {
+  max-width: 1000px;
+  margin: 0 auto 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.sc-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+.sc-title .zh {
+  margin-right: 12px;
+}
+
+/* Baccarat roadmap grids */
+.sc-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 2px;
+  border: 1px solid #d7d2c6;
+  padding: 4px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.sc-grid.big-road {
+  grid-template-rows: repeat(6, 26px);
+  grid-auto-columns: 26px;
+}
+.sc-grid.bead-plate {
+  grid-template-rows: repeat(6, 26px);
+  grid-auto-columns: 26px;
+}
+.sc-cell {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #eee7db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sc-bead {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+.sc-bead.player {
+  background: #2554a8;
+}
+.sc-bead.banker {
+  background: #b23a3a;
+}
+.sc-bead.tie {
+  background: #3f9142;
+}
+.sc-ring {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: transparent;
+}
+.sc-ring.player {
+  border-color: #2554a8;
+}
+.sc-ring.banker {
+  border-color: #b23a3a;
+}
+
+.sc-divider {
+  border: none;
+  border-top: 2px dotted #b7b0a2;
+  margin: 20px 0;
+}
+
+.sc-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.sc-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 40px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.sc-disclaimer {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.sc-logo {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+@media print {
+  .sc-page {
+    border: none;
+    border-radius: 0;
+    max-width: none;
+    padding: 0;
+  }
+  @page {
+    size: landscape;
+    margin: 12mm;
+  }
+}
